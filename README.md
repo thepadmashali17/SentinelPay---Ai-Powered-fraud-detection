@@ -1,37 +1,199 @@
-# SentinelPay – AI-Powered Fraud Detection Platform
+#  SentinelPay — AI-Powered Fraud Detection Platform
 
-SentinelPay is an AI-powered FinTech application designed to detect fraudulent financial transactions using machine learning. The platform focuses on explainable AI and secure audit logging to align with real-world banking and compliance requirements.
+SentinelPay is an **end-to-end FinTech fraud detection system** that demonstrates how machine learning models are integrated into real-world applications using backend APIs, user-facing dashboards, and compliance-aware system design.
 
-##  Project Status
-Under active development.
+The project focuses on **explainability, scalability, and production-style architecture**, not just model accuracy.
+
+---
+
+##  Key Highlights
+
+- 🔍 Machine Learning–driven fraud detection  
+- 🧠 Explainable AI (SHAP) for model transparency  
+- ⚙️ FastAPI backend for real-time inference  
+- 🎨 Streamlit frontend for interactive risk assessment  
+- 🔐 Blockchain audit layer (design intent) for compliance  
+- 🏗️ Clean, modular project architecture  
+
+---
 
 ##  Problem Statement
-Digital payment systems face increasing fraud risks due to evolving attack patterns. Traditional rule-based systems often fail to detect sophisticated fraud and generate excessive false positives. SentinelPay aims to address this challenge using machine learning models that can adapt to complex transaction behaviors while providing transparent explanations.
 
-##  High-Level Architecture
-The system is designed as a modular full-stack application:
+Financial fraud detection systems must:
+- Identify suspicious transactions accurately
+- Operate in real time
+- Be interpretable for audits and regulators
+- Integrate cleanly with production systems
 
-- **Frontend**: Transaction monitoring dashboard
-- **Backend**: REST APIs for data ingestion and inference
-- **ML Engine**: Fraud detection and risk scoring models
-- **Blockchain Layer**: Immutable audit trail for verified transactions
+SentinelPay addresses these requirements by combining:
+- ML-based fraud modeling
+- API-driven deployment
+- User-friendly interfaces
+- Immutable audit trail design
 
-##  Tech Stack
-- **Frontend**: React, Tailwind CSS
-- **Backend**: FastAPI (Python)
-- **Machine Learning**: Scikit-learn, SHAP
-- **Blockchain**: Solidity, Ethereum / Polygon
-- **Database**: PostgreSQL / SQLite
+---
 
-##  Planned Features
-- Transaction risk scoring
-- Fraud classification with imbalanced data handling
-- Explainable AI predictions
-- Blockchain-based transaction audit logs
-- Interactive analytics dashboard
+##  System Architecture
 
-##  Future Enhancements
-- Real-time transaction monitoring
-- Advanced time-series fraud models
-- Cloud deployment
-- Role-based access control
+User / Transaction
+↓
+Frontend Dashboard (Streamlit)
+↓
+Backend API (FastAPI)
+↓
+Fraud Detection Logic (ML / Heuristic)
+↓
+Risk Score + Decision
+↓
+Blockchain Audit Layer (Design)
+
+
+---
+
+##  Project Structure
+
+SentinelPay/
+├── backend/
+│ ├── app.py # FastAPI application
+│ ├── schemas.py # Request/response validation
+│ ├── model_loader.py # Fraud prediction logic
+│ └── README.md
+│
+├── frontend/
+│ ├── app.py # Streamlit dashboard
+│
+├── ml/
+│ ├── notebooks/
+│ │ ├── 01_data_exploration.ipynb
+│ │ ├── 02_feature_engineering.ipynb
+│ │ ├── 03_model_training.ipynb
+│ │ └── 04_model_explainability.ipynb
+│
+├── blockchain/
+│ └── README.md # Blockchain audit design
+│
+├── data/
+│ └── creditcard.csv
+│
+└── README.md # Project overview
+
+
+---
+
+##  Machine Learning Overview
+
+### Dataset
+- Credit card transaction dataset with severe class imbalance
+- Fraud cases represent a small minority of transactions
+
+### Techniques Used
+- Exploratory Data Analysis (EDA)
+- Feature scaling and engineering
+- SMOTE for imbalance handling
+- Random Forest classifier
+- Isolation Forest (anomaly detection)
+- Precision–Recall based evaluation
+
+### Explainability
+- Feature importance analysis
+- SHAP (SHapley Additive exPlanations)
+- Focus on regulatory transparency
+
+---
+
+##  Fraud Signals Used in the Application
+
+The frontend accepts **human-readable transaction attributes**, not raw feature vectors:
+
+| Input | Description |
+|----|----|
+| Transaction Amount | Monetary value of the transaction |
+| Time Since Last Transaction | Behavioral timing signal |
+| Transactions in Last Hour | Velocity / burst detection |
+| Merchant Risk Score | Historical merchant risk (0–1) |
+
+These inputs are **translated in the backend** into model-ready features — mirroring real production systems.
+
+---
+
+## Backend API (FastAPI)
+
+### Endpoints
+
+- `GET /` — Health check  
+- `POST /predict` — Fraud risk prediction  
+
+### Example Request
+```json
+{
+  "amount": 4500,
+  "time_since_last_txn": 120,
+  "txn_count_1hr": 6,
+  "merchant_risk": 0.8
+}
+Example Response
+{
+  "fraud_probability": 0.68,
+  "risk_level": "Medium"
+}
+ Frontend Dashboard (Streamlit)
+The dashboard allows users to:
+
+Enter transaction details
+
+Submit predictions in real time
+
+View fraud probability and risk level
+
+This layer demonstrates how ML models are consumed by non-technical users.
+
+ Blockchain Audit Layer (Design Intent)
+To support compliance and trust, SentinelPay proposes a blockchain-based audit layer.
+
+Purpose
+Immutable fraud decision logs
+
+Tamper-proof audit trails
+
+Regulatory readiness
+
+Key Principle
+No raw transaction or personal data stored on-chain
+
+Only hashed metadata and decision summaries
+
+This layer is documented but not deployed, reflecting realistic FinTech adoption patterns.
+
+🚀 How to Run the Project Locally
+1️⃣ Activate Virtual Environment
+.venv\Scripts\activate
+2️⃣ Start Backend API
+uvicorn backend.app:app --reload
+Visit:
+
+http://127.0.0.1:8000/docs
+3️⃣ Start Frontend Dashboard
+streamlit run frontend/app.py
+🧠 Skills Demonstrated
+Applied Machine Learning
+
+Explainable AI (XAI)
+
+Backend API development
+
+Frontend integration
+
+System design thinking
+
+FinTech compliance awareness
+
+Production-style project structuring
+
+📈 Future Enhancements
+Replace heuristic logic with trained ML model in backend
+
+Persist fraud decisions to a real blockchain testnet
+
+Add authentication and user roles
+
+Deploy using Docker / cloud services
