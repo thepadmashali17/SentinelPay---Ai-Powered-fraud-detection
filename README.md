@@ -6,7 +6,7 @@ The project focuses on **explainability, scalability, and production-style archi
 
 ---
 
-## 🚀 What does it do?
+##  What does it do?
 
 SentinelPay helps assess whether a financial transaction is fraudulent by analyzing behavioral and contextual signals.
 
@@ -21,7 +21,7 @@ The platform demonstrates how ML models are deployed, consumed, and explained in
 
 ---
 
-## 🏗️ System Overview
+##  System Overview
 
 The flow of data through the platform follows a modular, decoupled architecture:
 
@@ -36,7 +36,7 @@ The flow of data through the platform follows a modular, decoupled architecture:
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 SentinelPay/
