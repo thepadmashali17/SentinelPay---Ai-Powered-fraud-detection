@@ -50,78 +50,76 @@ Blockchain Audit Layer (Design)
 
 ---
 
-##  Project Structure
+## Project Structure
 
+```text
 SentinelPay/
 ├── backend/
-│ ├── app.py # FastAPI application
-│ ├── schemas.py # Request/response validation
-│ ├── model_loader.py # Fraud prediction logic
-│ └── README.md
+│   ├── app.py              # FastAPI application
+│   ├── schemas.py          # Request/response validation
+│   ├── model_loader.py     # Fraud prediction logic
+│   └── README.md
 │
 ├── frontend/
-│ ├── app.py # Streamlit dashboard
+│   └── app.py              # Streamlit dashboard
 │
 ├── ml/
-│ ├── notebooks/
-│ │ ├── 01_data_exploration.ipynb
-│ │ ├── 02_feature_engineering.ipynb
-│ │ ├── 03_model_training.ipynb
-│ │ └── 04_model_explainability.ipynb
+│   └── notebooks/
+│       ├── 01_data_exploration.ipynb
+│       ├── 02_feature_engineering.ipynb
+│       ├── 03_model_training.ipynb
+│       └── 04_model_explainability.ipynb
 │
 ├── blockchain/
-│ └── README.md # Blockchain audit design
+│   └── README.md           # Blockchain audit design
 │
 ├── data/
-│ └── creditcard.csv
+│   └── creditcard.csv
 │
-└── README.md # Project overview
+└── README.md               # Project overview
 
 
----
-
-##  Machine Learning Overview
+## Machine Learning Overview
 
 ### Dataset
 - Credit card transaction dataset with severe class imbalance
-- Fraud cases represent a small minority of transactions
+- Fraud cases represent a very small minority of total transactions
 
 ### Techniques Used
 - Exploratory Data Analysis (EDA)
-- Feature scaling and engineering
-- SMOTE for imbalance handling
+- Feature scaling and feature engineering
+- SMOTE for handling class imbalance
 - Random Forest classifier
-- Isolation Forest (anomaly detection)
-- Precision–Recall based evaluation
+- Isolation Forest for anomaly detection
+- Precision–Recall based evaluation metrics
 
 ### Explainability
 - Feature importance analysis
 - SHAP (SHapley Additive exPlanations)
-- Focus on regulatory transparency
+- Strong focus on regulatory transparency and interpretability
 
 ---
 
-##  Fraud Signals Used in the Application
+## Fraud Signals Used in the Application
 
-The frontend accepts **human-readable transaction attributes**, not raw feature vectors:
+The frontend accepts **human-readable transaction attributes**, rather than raw numerical feature vectors.
 
 | Input | Description |
-|----|----|
+|------|------------|
 | Transaction Amount | Monetary value of the transaction |
 | Time Since Last Transaction | Behavioral timing signal |
 | Transactions in Last Hour | Velocity / burst detection |
-| Merchant Risk Score | Historical merchant risk (0–1) |
+| Merchant Risk Score | Historical merchant risk score (0–1) |
 
-These inputs are **translated in the backend** into model-ready features — mirroring real production systems.
+These inputs are **translated in the backend** into model-ready features, mirroring how real-world production fraud systems operate.
 
 ---
 
 ## Backend API (FastAPI)
 
 ### Endpoints
-
-- `GET /` — Health check  
-- `POST /predict` — Fraud risk prediction  
+- `GET /` — Health check endpoint  
+- `POST /predict` — Fraud risk prediction endpoint  
 
 ### Example Request
 ```json
@@ -131,69 +129,4 @@ These inputs are **translated in the backend** into model-ready features — mir
   "txn_count_1hr": 6,
   "merchant_risk": 0.8
 }
-Example Response
-{
-  "fraud_probability": 0.68,
-  "risk_level": "Medium"
-}
- Frontend Dashboard (Streamlit)
-The dashboard allows users to:
 
-Enter transaction details
-
-Submit predictions in real time
-
-View fraud probability and risk level
-
-This layer demonstrates how ML models are consumed by non-technical users.
-
- Blockchain Audit Layer (Design Intent)
-To support compliance and trust, SentinelPay proposes a blockchain-based audit layer.
-
-Purpose
-Immutable fraud decision logs
-
-Tamper-proof audit trails
-
-Regulatory readiness
-
-Key Principle
-No raw transaction or personal data stored on-chain
-
-Only hashed metadata and decision summaries
-
-This layer is documented but not deployed, reflecting realistic FinTech adoption patterns.
-
-🚀 How to Run the Project Locally
-1️⃣ Activate Virtual Environment
-.venv\Scripts\activate
-2️⃣ Start Backend API
-uvicorn backend.app:app --reload
-Visit:
-
-http://127.0.0.1:8000/docs
-3️⃣ Start Frontend Dashboard
-streamlit run frontend/app.py
-🧠 Skills Demonstrated
-Applied Machine Learning
-
-Explainable AI (XAI)
-
-Backend API development
-
-Frontend integration
-
-System design thinking
-
-FinTech compliance awareness
-
-Production-style project structuring
-
-📈 Future Enhancements
-Replace heuristic logic with trained ML model in backend
-
-Persist fraud decisions to a real blockchain testnet
-
-Add authentication and user roles
-
-Deploy using Docker / cloud services
