@@ -1,42 +1,50 @@
 # SentinelPay – AI-Powered Fraud Detection Platform
 
-SentinelPay is an end-to-end FinTech fraud detection system that demonstrates how machine learning models are integrated into real-world applications using backend APIs, interactive dashboards, and compliance-aware system design.
+SentinelPay is an end-to-end **FinTech fraud detection platform** that demonstrates how machine learning models are integrated into real-world systems using backend APIs, interactive dashboards, and compliance-aware design.
 
-The project focuses on **explainability, scalability, and production-style architecture** rather than model accuracy alone.
+Rather than focusing only on model accuracy, this project emphasizes:
 
----
-
-##  What does it do?
-
-SentinelPay helps assess whether a financial transaction is fraudulent by analyzing behavioral and contextual signals.
-
-**You provide:**
-* **Transaction details:** Amount, timing, frequency, and merchant risk.
-
-**The system returns:**
-* **Fraud probability score:** A numerical likelihood of fraud.
-* **Risk classification:** Categorized as `Low`, `Medium`, or `High`.
-
-The platform demonstrates how ML models are deployed, consumed, and explained in modern financial ecosystems.
+- Explainability (XAI)
+- Scalability
+- Production-style system architecture
+- Regulatory and compliance awareness
 
 ---
 
-##  System Overview
+## 🚀 What Does SentinelPay Do?
 
-The flow of data through the platform follows a modular, decoupled architecture:
+SentinelPay assesses whether a financial transaction is potentially fraudulent by analyzing behavioral and contextual signals.
 
-1.  **User / Transaction:** Input via the interface.
-2.  **Frontend Dashboard:** Built with **Streamlit** for real-time interaction.
-3.  **Backend API:** **FastAPI** handles requests and serves as the bridge to the model.
-4.  **Fraud Detection Logic:** Processing engine using Scikit-Learn.
-5.  **Risk Score & Decision:** Output returned to the user.
-6.  **Blockchain Audit Layer:** Proposed immutable logging for compliance.
+### 🔹 Input
+Users provide transaction-related details such as:
+- Transaction amount  
+- Time since last transaction  
+- Transaction frequency  
+- Merchant risk score  
 
+### 🔹 Output
+The system returns:
+- **Fraud Probability Score** – numerical likelihood of fraud  
+- **Risk Classification** – `Low`, `Medium`, or `High`
 
+This project simulates how fraud detection models are **deployed, consumed, and explained** in modern financial ecosystems.
 
 ---
 
-##  Project Structure
+## 🧩 System Architecture Overview
+
+The platform follows a **modular and decoupled architecture**:
+
+1. **User / Transaction Input**
+2. **Frontend Dashboard** – Streamlit-based UI
+3. **Backend API** – FastAPI service
+4. **Fraud Detection Engine** – ML logic (Scikit-Learn)
+5. **Risk Scoring & Decision**
+6. **Blockchain Audit Layer (Design Proposal)** – Immutable compliance logs
+
+---
+
+## 📁 Project Structure
 
 ```text
 SentinelPay/
@@ -60,8 +68,119 @@ SentinelPay/
 │   └── README.md           # Blockchain audit design documentation
 │
 ├── data/
-│   └── creditcard.csv      # Source dataset (Kaggle/Synthetic)
+│   └── creditcard.csv      # Source dataset (Kaggle / Synthetic)
 │
 └── README.md               # Main project documentation
+🤖 Machine Learning Overview
+Dataset
+Credit card transaction dataset with severe class imbalance
 
-```
+Fraudulent transactions form a very small minority
+
+Techniques Used
+Exploratory Data Analysis (EDA)
+
+Feature scaling & feature engineering
+
+SMOTE for handling class imbalance
+
+Random Forest classifier
+
+Isolation Forest for anomaly detection
+
+Precision–Recall focused evaluation metrics
+
+Explainability (XAI)
+Feature importance analysis
+
+SHAP (SHapley Additive exPlanations)
+
+Designed with regulatory transparency in mind
+
+🔌 Backend API (FastAPI)
+Available Endpoints
+GET / – Health check
+
+POST /predict – Fraud risk prediction
+
+Sample Request
+{
+  "amount": 4500,
+  "time_since_last_txn": 120,
+  "txn_count_1hr": 6,
+  "merchant_risk": 0.8
+}
+📊 Frontend Dashboard (Streamlit)
+The Streamlit dashboard allows users to:
+
+Enter transaction details
+
+Submit real-time prediction requests
+
+View fraud probability and risk classification instantly
+
+🔗 Blockchain Audit Layer (Design Intent)
+To support compliance and trust, SentinelPay proposes a blockchain-based audit layer.
+
+Purpose
+Immutable fraud decision logs
+
+Tamper-proof audit trails
+
+Regulatory readiness
+
+Key Design Principle
+No raw transaction or personal data stored on-chain
+
+Only hashed metadata and decision summaries are recorded
+
+⚠️ This layer is documented but not deployed, reflecting realistic FinTech adoption practices.
+
+⚙️ How to Run the Project Locally
+Step 1: Activate Virtual Environment
+.venv\Scripts\activate
+Step 2: Start Backend API
+uvicorn backend.app:app --reload
+Open API Docs:
+
+http://127.0.0.1:8000/docs
+Step 3: Start Frontend Dashboard
+streamlit run frontend/app.py
+🛠 Tech Stack
+Python
+
+FastAPI
+
+Streamlit
+
+Scikit-learn
+
+SHAP
+
+Pandas
+
+NumPy
+
+🎯 Skills Demonstrated
+Applied Machine Learning
+
+Explainable AI (XAI)
+
+Backend API Development
+
+Frontend Integration
+
+End-to-End System Design
+
+FinTech Compliance Awareness
+
+Production-Style Project Structuring
+
+🔮 Future Enhancements
+Replace heuristic logic with fully trained ML model in backend
+
+Persist fraud decisions to a blockchain testnet
+
+Add authentication and role-based access control
+
+Containerize and deploy using Docker & cloud infrastructure
