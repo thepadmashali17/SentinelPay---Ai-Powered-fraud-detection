@@ -42,7 +42,7 @@ This project simulates how fraud detection models are deployed, consumed, and ex
 ---
 
 ## 📁 Project Structure
-
+```json
 SentinelPay/
 ├── backend/
 │   ├── app.py              # FastAPI application
@@ -67,7 +67,7 @@ SentinelPay/
 │   └── creditcard.csv      # Source dataset (Kaggle / Synthetic)
 │
 └── README.md               # Main project documentation
-
+```
 ---
 
 ## 🤖 Machine Learning Overview
